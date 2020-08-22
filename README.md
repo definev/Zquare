@@ -1,16 +1,26 @@
-# Zquare
+# Zquare 🎮 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat) ![Star](https://img.shields.io/github/stars/definev/Zquare?style=flat) ![Folk](https://img.shields.io/github/forks/definev/Zquare?style=flat)]
 
-A new Flutter project.
+⭐️ this repo if you like it.
 
-## Getting Started
+## Getting Started 🚀
 
-This project is a starting point for a Flutter application.
+- Clone the repo
+- Install the dependicies
+- Run it
 
-A few resources to get you started if this is your first Flutter project:
+## Try in web 
+####https://definev.github.io/zquare
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Image 📸
+<img src="assets/home.png">
+<img src="assets/game-1.png">
+<img src="assets/game-2.png">
+<img src="assets/game-over.png">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Feature 🚀
+- An example of awesome getx library implementation.
+- Simple and clear.
+
+## Contact me 📧
+#### Email : big.plus.uwu@gmail.com
+#### Facebook : https://www.facebook.com/definev
