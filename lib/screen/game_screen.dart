@@ -4,8 +4,6 @@ import 'package:Zquare/screen/game_over_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:Zquare/controller/game_controller.dart';
-import 'package:Zquare/utils/utils.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 enum Orientation {
   height,
@@ -23,38 +21,36 @@ class GameScreen extends GetWidget<GameController> {
       body: Container(
         height: size.height,
         width: size.width,
-        color: ZquareColors.pinkRegular,
+        color: Theme.of(context).backgroundColor,
         child: Stack(
           children: [
-            _playBoard(),
+            _playBoard(context),
             BarrierWidget(),
-            Container(
-              height: (size.height - boardSize) / 2,
-              alignment: Alignment.center,
-              child: Obx(
-                () => Text(
-                  controller.currentScore.value.toString(),
-                  style: GoogleFonts.cabin(
-                    fontSize: 75,
-                    color: ZquareColors.pinkBold,
+            if ((size.height - 515) / 2 >= 100)
+              Container(
+                height: (size.height - boardSize) / 2,
+                alignment: Alignment.center,
+                child: Obx(
+                  () => Text(
+                    controller.currentScore.value.toString(),
+                    style: Get.textTheme.headline2,
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),
     );
   }
 
-  Center _playBoard() {
+  Center _playBoard(BuildContext context) {
     return Center(
       child: Container(
         height: boardSize,
         width: boardSize,
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
-          color: ZquareColors.pinkLight,
+          color: Theme.of(context).cardColor,
           borderRadius: BorderRadius.circular(5),
         ),
         child: GetBuilder<GameController>(
@@ -128,7 +124,11 @@ class _BarrierWidgetState extends State<BarrierWidget>
       controller.gameStorage.setHighscore(controller.currentScore.value);
     controller.animationController.stop();
     controller.animationController.value = 0.000000004;
-    if (!Get.isDialogOpen) Get.dialog(GameOverPopUp());
+    if (!Get.isDialogOpen)
+      Get.dialog(
+        GameOverPopUp(),
+        barrierDismissible: false,
+      );
     controller.setStart(GameState.end);
   }
 

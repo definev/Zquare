@@ -1,10 +1,14 @@
 import 'package:Zquare/controller/game_controller.dart';
-import 'package:Zquare/utils/utils.dart';
+import 'package:Zquare/controller/setting_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends GetWidget<GameController> {
+class HomeScreen extends StatelessWidget {
+  final GameController gameController = GetInstance().find<GameController>();
+  final SettingController settingController =
+      GetInstance().find<SettingController>();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -13,77 +17,82 @@ class HomeScreen extends GetWidget<GameController> {
       body: Container(
         height: size.height,
         width: size.width,
-        color: ZquareColors.pinkRegular,
+        color: Theme.of(context).backgroundColor,
         alignment: Alignment.center,
-        child: _playBoard(),
-      ),
-    );
-  }
-
-  Center _playBoard() {
-    return Center(
-      child: Container(
-        height: 515,
-        width: 515,
-        padding: EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: ZquareColors.pinkLight,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Column(
+        child: Center(
+          child: Container(
+            height: 515,
+            width: 515,
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(
-                  "Zquare",
-                  style: GoogleFonts.varela(
-                    fontSize: 75,
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
                     Text(
-                      "High score: ",
-                      style: GoogleFonts.varela(
-                        fontSize: 28,
-                        color: Colors.amber[600],
-                      ),
+                      "Zquare",
+                      style: Theme.of(context).textTheme.headline1,
                     ),
-                    Text(
-                      controller.gameStorage.highscore.toString(),
-                      style: GoogleFonts.varela(
-                        fontSize: 28,
-                        color: Colors.amber[600],
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "High score: ",
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                        Text(
+                          gameController.gameStorage.highscore.toString(),
+                          style: Theme.of(context).textTheme.bodyText1,
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-            SizedBox(height: 60),
-            Container(
-              height: 80,
-              width: 250,
-              decoration: BoxDecoration(
-                color: ZquareColors.pinkBold,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: InkWell(
-                onTap: () => Get.toNamed('/game'),
-                child: Center(
-                  child: Text(
-                    "Play",
-                    style: GoogleFonts.varela(
-                      fontSize: 30,
-                      color: ZquareColors.pinkLight,
+                Container(
+                  height: 80,
+                  width: 250,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).buttonColor,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: InkWell(
+                    onTap: () => Get.toNamed('/game'),
+                    child: Center(
+                      child: Text(
+                        "Play",
+                        style: Theme.of(context).textTheme.button,
+                      ),
                     ),
                   ),
                 ),
-              ),
+                SizedBox(
+                  width: 250,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Dark mode",
+                        style: Theme.of(context).textTheme.bodyText1.copyWith(
+                              color:
+                                  Theme.of(context).textTheme.headline1.color,
+                            ),
+                      ),
+                      Obx(
+                        () => CupertinoSwitch(
+                          onChanged: (bool _) => settingController.changeMode(),
+                          value: settingController.isDark.value,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

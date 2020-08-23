@@ -47,11 +47,11 @@ class GameController extends GetxController {
 
   Color getColor(int index) {
     if (index == curPos) {
-      return Colors.red[300];
+      return Get.theme.accentColor;
     } else if (index == randSpawn) {
-      return ZquareColors.pinkMedium;
+      return Get.theme.primaryColor;
     } else {
-      return ZquareColors.pinkBold;
+      return Get.theme.hintColor;
     }
   }
 
