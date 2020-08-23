@@ -19,6 +19,7 @@ https://definev.github.io/zquare
 
 ## Feature 🚀
 - An example of awesome getx library implementation.
+- Dark mode.
 - Simple and clear.
 
 ## Contact me 📧
